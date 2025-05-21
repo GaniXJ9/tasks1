@@ -59,31 +59,31 @@
 
 // 4) Implement a function that flattens a deeply nested object while preserving key paths.
 
-const nestedObject = {
-  a: 1,
-  b: {
-    c: 2,
-    d: {
-      e: 3,
-      f: 4,
-    },
-  },
-  g: 5,
-};
+// const nestedObject = {
+//   a: 1,
+//   b: {
+//     c: 2,
+//     d: {
+//       e: 3,
+//       f: 4,
+//     },
+//   },
+//   g: 5,
+// };
 
-function objectFlat(obj, parentKey, result) {
-  for (let key in obj) {
-    let currentKey = parentKey ? `${parentKey}.${key}` : key;
-    if (typeof obj[key] === "object") {
-      objectFlat(obj[key], currentKey, result);
-    } else {
-      result[currentKey] = obj[key];
-    }
-  }
-  return result;
-}
+// function objectFlat(obj, parentKey, result) {
+//   for (let key in obj) {
+//     let currentKey = parentKey ? `${parentKey}.${key}` : key;
+//     if (typeof obj[key] === "object") {
+//       objectFlat(obj[key], currentKey, result);
+//     } else {
+//       result[currentKey] = obj[key];
+//     }
+//   }
+//   return result;
+// }
 
-console.log(objectFlat(nestedObject, "", {}));
+// console.log(objectFlat(nestedObject, "", {}));
 
 // 5) Write a higher-order function `debounce()` that delays the execution of a given function until after a specified time interval has passed since the last call.
 
