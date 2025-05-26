@@ -268,21 +268,21 @@ function sayHello() {
 // }
 
 // Вариант 2
-function promisify(fn) {
-  return function (...args) {
-    return new Promise((resolve, reject) => {
-      try {
-        fn(...args, (err, result) => {
-          if (err) return reject(err);
-          resolve(result);
-        });
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
-}
+// function promisify(fn) {
+//   return function (...args) {
+//     return new Promise((resolve, reject) => {
+//       try {
+//         fn(...args, (err, result) => {
+//           if (err) return reject(err);
+//           resolve(result);
+//         });
+//       } catch (error) {
+//         reject(error);
+//       }
+//     });
+//   };
+// }
 
-let hello = promisify(sayHello);
+// let hello = promisify(sayHello);
 
-console.log(hello());
+// console.log(hello());
