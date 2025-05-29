@@ -1,4 +1,4 @@
-// Task 1
+// // Task 1
 let fruits = [
   { type: "fruit", name: "apple", color: "red", count: 1 },
   { type: "veg", name: "carrot", color: "orange", count: 2 },
@@ -18,6 +18,7 @@ let fruits = [
 
 function groupBy(objArr, groupKey) {
   let groupedObj = {};
+
   for (let obj of objArr) {
     for (let key in obj) {
       if (key === groupKey) {
@@ -31,6 +32,7 @@ function groupBy(objArr, groupKey) {
       }
     }
   }
+
   return groupedObj;
 }
 
@@ -38,23 +40,25 @@ console.log(groupBy(fruits, "type"));
 console.log(groupBy(fruits, "color"));
 console.log(groupBy(fruits, "count"));
 
-// Task 2
+// // Task 2
 
-function charFrequency(word) {
-  let result = {};
-  for (let letter of word) {
-    if (!result.hasOwnProperty(letter))
-      result[letter] = word.split("").reduce((initNum, item) => {
-        if (item === letter) {
-          initNum++;
-        }
-        return initNum;
-      }, 0);
-  }
-  return result;
-}
-console.log(charFrequency("banana"));
-console.log(charFrequency("apple"));
+// function charFrequency(word) {
+//   let result = {};
+
+//   for (let letter of word) {
+//     if (!result.hasOwnProperty(letter))
+//       result[letter] = word.split("").reduce((initNum, item) => {
+//         if (item === letter) {
+//           initNum++;
+//         }
+//         return initNum;
+//       }, 0);
+//   }
+
+//   return result;
+// }
+// console.log(charFrequency("banana"));
+// console.log(charFrequency("apple"));
 
 // Output: { b: 1, a: 3, n: 2 }
 
@@ -76,6 +80,7 @@ function chunk(arr, itemCount, result = []) {
       chunk(newArr, itemCount, result);
     }
   }
+
   return result;
 }
 
