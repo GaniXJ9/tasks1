@@ -9,6 +9,8 @@ function chunk(arr, itemCount, result = []) {
       if (!result.includes(group)) {
         result.push(group);
       }
+    } else if (itemCount === 0) {
+      return [];
     } else {
       let newArr = arr.splice(itemCount);
       chunk(newArr, itemCount, result);
@@ -17,5 +19,5 @@ function chunk(arr, itemCount, result = []) {
 
   return result;
 }
-
+console.log(chunk([], 1));
 module.exports = chunk;

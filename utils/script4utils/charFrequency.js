@@ -1,9 +1,10 @@
 function charFrequency(word) {
+  let lowerCaseWord = word.toLowerCase();
   let result = {};
 
-  for (let letter of word) {
+  for (let letter of lowerCaseWord) {
     if (!result.hasOwnProperty(letter))
-      result[letter] = word.split("").reduce((initNum, item) => {
+      result[letter] = lowerCaseWord.split("").reduce((initNum, item) => {
         if (item === letter) {
           initNum++;
         }

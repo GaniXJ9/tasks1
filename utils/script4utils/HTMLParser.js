@@ -2,7 +2,9 @@ function HTMLParser(structure) {
   let i = 0;
 
   function parseNode() {
-    if (structure[i] !== "<") return null;
+    if (structure[i] !== "<") {
+      return null;
+    }
 
     i++;
 
@@ -21,7 +23,9 @@ function HTMLParser(structure) {
     ) {
       if (structure[i] === "<") {
         let child = parseNode();
-        if (child) children.push(child);
+        if (child) {
+          children.push(child);
+        }
       } else {
         let text = "";
         while (structure[i] && structure[i] !== "<") {

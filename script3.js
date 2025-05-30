@@ -126,6 +126,7 @@ function nestedTreeStructure(flatObj) {
 }
 
 console.log(nestedTreeStructure(flatObj));
+
 // 5) Write a function that deep merges multiple objects, handling nested structures and arrays.
 
 let user = {
