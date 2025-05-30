@@ -2,7 +2,7 @@ function nestedTreeStructure(flatObj) {
   const result = {};
 
   for (const key in flatObj) {
-    const keys = key.split("");
+    const keys = key.split(".");
     let current = result;
 
     keys.forEach((part, index) => {

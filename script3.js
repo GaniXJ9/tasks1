@@ -67,7 +67,7 @@ let todosContainer = document.querySelector(".todos__container");
 let todoBtn = document.getElementById("todoBtn");
 let todoInp = document.getElementById("todosInp");
 
-class PreudoRedux {
+class ToDoList {
   constructor() {
     this.todolist = [];
   }
@@ -86,7 +86,7 @@ class PreudoRedux {
   }
 }
 
-let store = new PreudoRedux();
+let store = new ToDoList();
 
 todoBtn.addEventListener("click", () => {
   store.addTodo(todoInp.value);
