@@ -1,30 +1,59 @@
-export default class Square {
-  constructor() {
-    this.sqCount = 0;
-    this.squares = [];
-  }
+import Shape from "./Shape.js";
+
+export default class Square extends Shape {
   createSquare() {
-    let container = document.querySelector(".figure-container");
-    let square = document.createElement("canvas");
+    let size = 60;
+    let maxAttempts = 100;
+    let attempt = 0;
+    let square;
+    let left;
+    let top;
+    let newRect;
+    let isOverlapping;
 
-    square.width = 60;
-    square.height = 60;
-    square.classList.add("figure");
+    do {
+      const containerRect = this.container.getBoundingClientRect();
 
-    square.style.left =
-      Math.floor(Math.random() * (container.clientWidth - 60)) + "px";
-    square.style.top =
-      Math.floor(Math.random() * (container.clientHeight - 60)) + "px";
+      left = Math.floor(Math.random() * (this.container.clientWidth - size));
+      top = Math.floor(Math.random() * (this.container.clientHeight - size));
 
-    this.sqCount++;
+      newRect = {
+        left: containerRect.left + left,
+        top: containerRect.top + top,
+        right: containerRect.left + left + size,
+        bottom: containerRect.top + top + size,
+      };
 
-    container.append(square);
-    this.squares.push({
-      id: this.sqCount,
-      positionX: square.offsetLeft,
-      positionY: square.offsetTop,
-    });
+      isOverlapping = false;
 
-    console.log(this.squares);
+      for (let shapeItem of Shape.shapesList) {
+        let existingItem = shapeItem.getBoundingClientRect();
+        if (this.isOverlap(newRect, existingItem)) {
+          isOverlapping = true;
+          break;
+        }
+      }
+
+      attempt++;
+
+      if (!isOverlapping) break;
+    } while (attempt < maxAttempts);
+
+    if (!isOverlapping) {
+      square = document.createElement("canvas");
+      square.width = size;
+      square.height = size;
+      square.classList.add("figure");
+      square.style.left = left + "px";
+      square.style.top = top + "px";
+      square.addEventListener("mousedown", (event) => {
+        this.mouseDown(square, event);
+      });
+
+      this.container.append(square);
+      Shape.shapesList.push(square);
+    } else {
+      alert("Недостаточно места для новой фигуры.");
+    }
   }
 }
