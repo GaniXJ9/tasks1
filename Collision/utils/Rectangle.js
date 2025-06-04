@@ -51,6 +51,9 @@ export default class Rectangle extends Shape {
       rectangle.style.left = left + "px";
       rectangle.style.top = top + "px";
 
+      rectangle.addEventListener("mousedown", (event) => {
+        this.grapShape(rectangle, event);
+      });
       this.container.append(rectangle);
       Shape.shapesList.push(rectangle);
     } else {

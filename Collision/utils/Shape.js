@@ -7,6 +7,8 @@ export default class Shape {
     this.newY = 0;
     this.startX = 0;
     this.startY = 0;
+    this.boundMouseMove = null;
+    this.boundMouseUp = null;
   }
 
   isOverlap(shape1, shape2) {
@@ -18,21 +20,50 @@ export default class Shape {
     );
   }
 
-  mouseDown(targetShape, event) {
+  grapShape(targetShape, event) {
     this.startX = event.clientX;
     this.startY = event.clientY;
 
-    document.addEventListener("mousemove", (event) => {
-      this.newX = this.startX - event.clientX;
-      this.newY = this.startY - event.clientY;
+    this.boundMoveShape = this.moveShape.bind(this, targetShape);
+    this.boundDropShape = this.dropShape.bind(this);
 
-      this.startX = event.clientX;
-      this.startY = event.clientY;
+    document.addEventListener("mousemove", this.boundMoveShape);
+    document.addEventListener("mouseup", this.boundDropShape);
+  }
 
-      targetShape.style.left = this.startX + "px";
-      targetShape.style.top = this.startY + "px";
-      console.log(this.newX, this.newY);
-    });
-    document.addEventListener("mouseup", mouseUp);
+  moveShape(targetShape, event) {
+    this.newX = this.startX - event.clientX;
+    this.newY = this.startY - event.clientY;
+
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+
+    if (targetShape.offsetLeft >= 0 && targetShape.offsetLeft + 60 <= 820) {
+      targetShape.style.left = targetShape.offsetLeft - this.newX + "px";
+
+      console.log(targetShape.offsetTop);
+      console.log(this.container.getBoundingClientRect());
+    } else {
+      if (targetShape.offsetLeft < 100) {
+        targetShape.style.left = "0px";
+      } else {
+        targetShape.style.left = "760px";
+      }
+    }
+
+    if (targetShape.offsetTop >= 0 && targetShape.offsetTop <= 560) {
+      targetShape.style.top = targetShape.offsetTop - this.newY + "px";
+    } else {
+      if (targetShape.offsetTop < 100) {
+        targetShape.style.top = "0px";
+      } else {
+        targetShape.style.top = "559px";
+      }
+    }
+  }
+
+  dropShape() {
+    document.removeEventListener("mousemove", this.boundMoveShape);
+    document.removeEventListener("mouseup", this.boundDropShape);
   }
 }
