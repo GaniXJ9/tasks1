@@ -32,38 +32,68 @@ export default class Shape {
   }
 
   moveShape(targetShape, event) {
+    let zone = this.container.getBoundingClientRect();
+
     this.newX = this.startX - event.clientX;
     this.newY = this.startY - event.clientY;
 
     this.startX = event.clientX;
     this.startY = event.clientY;
 
-    if (targetShape.offsetLeft >= 0 && targetShape.offsetLeft + 60 <= 820) {
+    if (
+      targetShape.offsetLeft >= 0 &&
+      targetShape.offsetLeft + targetShape.width <= zone.width
+    ) {
       targetShape.style.left = targetShape.offsetLeft - this.newX + "px";
-
-      console.log(targetShape.offsetTop);
-      console.log(this.container.getBoundingClientRect());
     } else {
       if (targetShape.offsetLeft < 100) {
         targetShape.style.left = "0px";
       } else {
-        targetShape.style.left = "760px";
+        targetShape.style.left = zone.width - targetShape.width - 1 + "px";
       }
     }
 
-    if (targetShape.offsetTop >= 0 && targetShape.offsetTop <= 560) {
+    if (
+      targetShape.offsetTop >= 0 &&
+      targetShape.offsetTop + targetShape.height <= zone.height
+    ) {
       targetShape.style.top = targetShape.offsetTop - this.newY + "px";
     } else {
       if (targetShape.offsetTop < 100) {
         targetShape.style.top = "0px";
       } else {
-        targetShape.style.top = "559px";
+        targetShape.style.top = zone.height - targetShape.height - 1 + "px";
       }
     }
+    this.isColliding(targetShape);
   }
 
   dropShape() {
     document.removeEventListener("mousemove", this.boundMoveShape);
     document.removeEventListener("mouseup", this.boundDropShape);
+  }
+
+  isColliding(targetShape) {
+    let targetShapeСoordinates = targetShape.getBoundingClientRect();
+
+    for (let shape of Shape.shapesList) {
+      let currentShapeСoordinates = shape.getBoundingClientRect();
+      if (
+        targetShapeСoordinates.x + targetShapeСoordinates.width + 15 >
+          currentShapeСoordinates.x &&
+        targetShapeСoordinates.x <
+          currentShapeСoordinates.x + currentShapeСoordinates.width &&
+        targetShapeСoordinates.y > currentShapeСoordinates.y &&
+        targetShapeСoordinates.y <
+          currentShapeСoordinates.y + currentShapeСoordinates.height
+      ) {
+        targetShape.classList.add("collide");
+        shape.classList.add("collide");
+        targetShape.style.left = currentShapeСoordinates.x + 10 + "px";
+        targetShape.removeEventListener("mousemove", this.boundMoveShape);
+        targetShape.removeEventListener("mousedown", this.grapShape);
+      } else {
+      }
+    }
   }
 }
