@@ -78,21 +78,22 @@ export default class Shape {
 
     for (let shape of Shape.shapesList) {
       let currentShapeСoordinates = shape.getBoundingClientRect();
+
       if (
-        targetShapeСoordinates.x + targetShapeСoordinates.width + 15 >
-          currentShapeСoordinates.x &&
-        targetShapeСoordinates.x <
-          currentShapeСoordinates.x + currentShapeСoordinates.width &&
-        targetShapeСoordinates.y > currentShapeСoordinates.y &&
-        targetShapeСoordinates.y <
-          currentShapeСoordinates.y + currentShapeСoordinates.height
+        ((targetShapeСoordinates.left > currentShapeСoordinates.left &&
+          targetShapeСoordinates.left - 15 < currentShapeСoordinates.right) ||
+          (targetShapeСoordinates.right + 15 > currentShapeСoordinates.left &&
+            targetShapeСoordinates.right < currentShapeСoordinates.right)) &&
+        ((targetShapeСoordinates.top > currentShapeСoordinates.top &&
+          targetShapeСoordinates.top - 15 < currentShapeСoordinates.bottom) ||
+          (targetShapeСoordinates.bottom + 15 > currentShapeСoordinates.top &&
+            targetShapeСoordinates.bottom < currentShapeСoordinates.bottom))
       ) {
-        targetShape.classList.add("collide");
-        shape.classList.add("collide");
-        targetShape.style.left = currentShapeСoordinates.x + 10 + "px";
-        targetShape.removeEventListener("mousemove", this.boundMoveShape);
-        targetShape.removeEventListener("mousedown", this.grapShape);
+        targetShape.style.border = "1px solid red";
+        shape.style.border = "1px solid red";
       } else {
+        targetShape.style.border = "1px solid white";
+        shape.style.border = "1px solid white";
       }
     }
   }
