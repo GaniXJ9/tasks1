@@ -36,11 +36,6 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderBottom = "4px solid red";
     shape2.style.borderTop = "4px solid green";
-
-    shape1.style.top =
-      Math.round(shape2.offsetTop - shape2Сoordinates.height) + "px";
-
-    shape1.style.left = Math.round(shape2.offsetLeft) + "px"; // Cделано
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -49,10 +44,6 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderRight = "4px solid red";
     shape2.style.borderLeft = "4px solid green";
-
-    shape1.style.left =
-      Math.round(shape2.offsetLeft - shape2Сoordinates.width) + "px";
-    shape1.style.top = Math.round(shape2.offsetTop) + "px"; // Cделано
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -61,8 +52,8 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderRight = "4px solid red";
     shape1.style.borderBottom = "4px solid red";
-    shape2.style.borderLeft = "4px solid red";
-    shape2.style.borderTop = "4px solid red"; // Позже
+    shape2.style.borderLeft = "4px solid green";
+    shape2.style.borderTop = "4px solid green";
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left - 15 < shape2Сoordinates.right &&
@@ -71,10 +62,6 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderLeft = "4px solid red";
     shape2.style.borderRight = "4px solid green";
-
-    shape1.style.left =
-      Math.round(shape2.offsetLeft + shape2Сoordinates.width) + "px";
-    shape1.style.top = Math.round(shape2.offsetTop) + "px"; //Cделано
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left < shape2Сoordinates.right &&
@@ -83,10 +70,6 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderTop = "4px solid red";
     shape2.style.borderBottom = "4px solid green";
-
-    shape1.style.top =
-      Math.round(shape2.offsetTop + shape2Сoordinates.height) + "px";
-    shape1.style.left = Math.round(shape2.offsetLeft) + "px"; //Сделано
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left - 15 < shape2Сoordinates.right &&
@@ -95,8 +78,8 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderLeft = "4px solid red";
     shape1.style.borderBottom = "4px solid red";
-    shape2.style.borderRight = "4px solid red";
-    shape2.style.borderTop = "4px solid red"; // Позже
+    shape2.style.borderRight = "4px solid green";
+    shape2.style.borderTop = "4px solid green";
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -105,10 +88,6 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderRight = "4px solid red";
     shape2.style.borderLeft = "4px solid green";
-
-    shape1.style.left =
-      Math.round(shape2.offsetLeft - shape2Сoordinates.width) + "px";
-    shape1.style.top = Math.round(shape2.offsetTop) + "px"; //Cделано
   } else if (
     shape1Сoordinates.right > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -125,12 +104,12 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderRight = "4px solid red";
     shape1.style.borderTop = "4px solid red";
-    shape2.style.borderLeft = "4px solid red";
-    shape2.style.borderBottom = "4px solid red";
+    shape2.style.borderLeft = "4px solid green";
+    shape2.style.borderBottom = "4px solid green";
   } else {
     shape1.style.borderLeft = "4px solid red";
     shape1.style.borderTop = "4px solid red";
-    shape2.style.borderRight = "4px solid red";
-    shape2.style.borderBottom = "4px solid red";
+    shape2.style.borderRight = "4px solid green";
+    shape2.style.borderBottom = "4px solid green";
   }
 }
