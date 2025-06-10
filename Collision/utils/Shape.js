@@ -1,5 +1,4 @@
 import isColliding from "./isColliding.js";
-import CheckWhichSideIsColliding from "./isColliding.js";
 
 export default class Shape {
   static shapesList = [];
@@ -27,8 +26,13 @@ export default class Shape {
     this.startX = event.clientX;
     this.startY = event.clientY;
 
+    let targetShapeStartPosition = targetShape.getBoundingClientRect();
     this.boundMoveShape = this.moveShape.bind(this, targetShape);
-    this.boundDropShape = this.dropShape.bind(this);
+    this.boundDropShape = this.dropShape.bind(
+      this,
+      targetShapeStartPosition,
+      targetShape
+    );
 
     document.addEventListener("mousemove", this.boundMoveShape);
     document.addEventListener("mouseup", this.boundDropShape);
@@ -68,10 +72,15 @@ export default class Shape {
         targetShape.style.top = zone.height - targetShape.height - 1 + "px";
       }
     }
-    isColliding(targetShape);
+
+    // console.log(targetShape.getBoundingClientRect().top);
   }
 
-  dropShape() {
+  dropShape(targetShapeStartPosition, targetShape) {
+    // console.log(targetShapeStartPosition);
+    isColliding(targetShape);
+    // targetShape.style.left = Math.round(targetShapeStartPosition.left) + "px";
+    // targetShape.style.top = Math.round(targetShapeStartPosition.top) + "px";
     document.removeEventListener("mousemove", this.boundMoveShape);
     document.removeEventListener("mouseup", this.boundDropShape);
   }

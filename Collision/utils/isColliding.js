@@ -36,6 +36,9 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderBottom = "4px solid red";
     shape2.style.borderTop = "4px solid green";
+
+    shape1.style.top = shape2.offsetTop - shape1Сoordinates.height + "px";
+    shape1.style.left = shape2.offsetLeft + "px"; //done
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -44,6 +47,9 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderRight = "4px solid red";
     shape2.style.borderLeft = "4px solid green";
+
+    shape1.style.left = shape2.offsetLeft - shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px"; // done
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -54,6 +60,8 @@ function checkCollisionSide(shape1, shape2) {
     shape1.style.borderBottom = "4px solid red";
     shape2.style.borderLeft = "4px solid green";
     shape2.style.borderTop = "4px solid green";
+    shape1.style.left = shape2.offsetLeft - shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px"; // done
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left - 15 < shape2Сoordinates.right &&
@@ -62,6 +70,9 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderLeft = "4px solid red";
     shape2.style.borderRight = "4px solid green";
+
+    shape1.style.left = shape2.offsetLeft + shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px"; //d
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left < shape2Сoordinates.right &&
@@ -70,6 +81,9 @@ function checkCollisionSide(shape1, shape2) {
   ) {
     shape1.style.borderTop = "4px solid red";
     shape2.style.borderBottom = "4px solid green";
+
+    shape1.style.top = shape2.offsetTop + shape1Сoordinates.height + "px";
+    shape1.style.left = shape2.offsetLeft + "px"; //d
   } else if (
     shape1Сoordinates.left > shape2Сoordinates.left &&
     shape1Сoordinates.left - 15 < shape2Сoordinates.right &&
@@ -80,6 +94,8 @@ function checkCollisionSide(shape1, shape2) {
     shape1.style.borderBottom = "4px solid red";
     shape2.style.borderRight = "4px solid green";
     shape2.style.borderTop = "4px solid green";
+    shape1.style.left = shape2.offsetLeft + shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px";
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -87,7 +103,10 @@ function checkCollisionSide(shape1, shape2) {
     shape1Сoordinates.top < shape2Сoordinates.bottom
   ) {
     shape1.style.borderRight = "4px solid red";
-    shape2.style.borderLeft = "4px solid green";
+    shape2.style.borderLeft = "4px solid blue";
+
+    shape1.style.left = shape2.offsetLeft - shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px"; //d
   } else if (
     shape1Сoordinates.right > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -95,7 +114,10 @@ function checkCollisionSide(shape1, shape2) {
     shape1Сoordinates.top - 15 < shape2Сoordinates.bottom
   ) {
     shape1.style.borderTop = "4px solid red";
-    shape2.style.borderBottom = "4px solid green";
+    shape2.style.borderBottom = "4px solid yellow";
+
+    shape1.style.top = shape2.offsetTop + shape1Сoordinates.height + "px";
+    shape1.style.left = shape2.offsetLeft + "px"; //d
   } else if (
     shape1Сoordinates.right + 15 > shape2Сoordinates.left &&
     shape1Сoordinates.right < shape2Сoordinates.right &&
@@ -106,10 +128,16 @@ function checkCollisionSide(shape1, shape2) {
     shape1.style.borderTop = "4px solid red";
     shape2.style.borderLeft = "4px solid green";
     shape2.style.borderBottom = "4px solid green";
+
+    shape1.style.left = shape2.offsetLeft - shape1Сoordinates.width + "px";
+    shape1.style.top = shape2.offsetTop + "px";
   } else {
     shape1.style.borderLeft = "4px solid red";
     shape1.style.borderTop = "4px solid red";
     shape2.style.borderRight = "4px solid green";
     shape2.style.borderBottom = "4px solid green";
+
+    shape1.style.top = shape2.offsetTop + "px";
+    shape2.style.left = shape2.offsetLeft - shape1Сoordinates.width + "px";
   }
 }
