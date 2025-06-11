@@ -46,6 +46,7 @@ export default class Square extends Shape {
       square.classList.add("figure");
       square.style.left = left + "px";
       square.style.top = top + "px";
+
       square.addEventListener("mousedown", (event) => {
         this.grapShape(square, event);
       });

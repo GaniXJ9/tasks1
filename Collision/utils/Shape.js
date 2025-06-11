@@ -72,15 +72,11 @@ export default class Shape {
         targetShape.style.top = zone.height - targetShape.height - 1 + "px";
       }
     }
-
-    // console.log(targetShape.getBoundingClientRect().top);
   }
 
   dropShape(targetShapeStartPosition, targetShape) {
-    // console.log(targetShapeStartPosition);
     isColliding(targetShape);
-    // targetShape.style.left = Math.round(targetShapeStartPosition.left) + "px";
-    // targetShape.style.top = Math.round(targetShapeStartPosition.top) + "px";
+
     document.removeEventListener("mousemove", this.boundMoveShape);
     document.removeEventListener("mouseup", this.boundDropShape);
   }
