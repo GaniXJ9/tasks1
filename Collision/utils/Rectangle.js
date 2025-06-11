@@ -29,7 +29,7 @@ export default class Rectangle extends Shape {
 
       for (let shapeItem of Shape.shapesList) {
         let existingItem = shapeItem.getBoundingClientRect();
-        if (this.isOverlap(newRect, existingItem)) {
+        if (this.isOverlap(newRect, existingItem, 20)) {
           isOverlapping = true;
           break;
         }

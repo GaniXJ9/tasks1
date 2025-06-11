@@ -1,3 +1,4 @@
+import CollidingEffect from "./CollidingEffect.js";
 import isColliding from "./isColliding.js";
 
 export default class Shape {
@@ -13,12 +14,12 @@ export default class Shape {
     this.boundMouseUp = null;
   }
 
-  isOverlap(shape1, shape2) {
+  isOverlap(shape1, shape2, margin) {
     return !(
-      shape1.right + 20 <= shape2.left ||
-      shape1.left - 20 >= shape2.right ||
-      shape1.bottom + 20 <= shape2.top ||
-      shape1.top - 20 >= shape2.bottom
+      shape1.right + margin <= shape2.left ||
+      shape1.left - margin >= shape2.right ||
+      shape1.bottom + margin <= shape2.top ||
+      shape1.top - margin >= shape2.bottom
     );
   }
 
@@ -75,7 +76,7 @@ export default class Shape {
   }
 
   dropShape(targetShapeStartPosition, targetShape) {
-    isColliding(targetShape);
+    CollidingEffect(targetShape);
 
     document.removeEventListener("mousemove", this.boundMoveShape);
     document.removeEventListener("mouseup", this.boundDropShape);
