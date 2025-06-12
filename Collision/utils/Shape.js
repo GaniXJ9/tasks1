@@ -3,9 +3,12 @@ import isColliding from "./isColliding.js";
 
 export default class Shape {
   static shapesList = [];
+
   constructor() {
     this.container = document.querySelector(".figure-container");
     this.shapesCount = 0;
+    this.originalPositionX = 0;
+    this.originalPositionY = 0;
     this.newX = 0;
     this.newY = 0;
     this.startX = 0;
@@ -24,16 +27,15 @@ export default class Shape {
   }
 
   grapShape(targetShape, event) {
+    this.originalPositionX = targetShape.offsetLeft;
+    this.originalPositionY = targetShape.offsetTop;
+
     this.startX = event.clientX;
     this.startY = event.clientY;
 
     let targetShapeStartPosition = targetShape.getBoundingClientRect();
     this.boundMoveShape = this.moveShape.bind(this, targetShape);
-    this.boundDropShape = this.dropShape.bind(
-      this,
-      targetShapeStartPosition,
-      targetShape
-    );
+    this.boundDropShape = this.dropShape.bind(this, targetShape);
 
     document.addEventListener("mousemove", this.boundMoveShape);
     document.addEventListener("mouseup", this.boundDropShape);
@@ -75,7 +77,20 @@ export default class Shape {
     }
   }
 
-  dropShape(targetShapeStartPosition, targetShape) {
+  dropShape(targetShape) {
+    for (let shape of Shape.shapesList) {
+      if (
+        isColliding(
+          targetShape.getBoundingClientRect(),
+          shape.getBoundingClientRect(),
+          0
+        )
+      ) {
+        targetShape.style.left = this.originalPositionX + "px";
+        targetShape.style.top = this.originalPositionY + "px";
+      } else {
+      }
+    }
     CollidingEffect(targetShape);
 
     document.removeEventListener("mousemove", this.boundMoveShape);

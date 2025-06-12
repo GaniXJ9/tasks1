@@ -9,21 +9,6 @@ export default function CollidingEffect(targetShape) {
 
     if (shape === targetShape) continue;
 
-    // if (
-    //   ((targetShapeСoordinates.left > currentShapeСoordinates.left &&
-    //     targetShapeСoordinates.left - 15 < currentShapeСoordinates.right) ||
-    //     (targetShapeСoordinates.right + 15 > currentShapeСoordinates.left &&
-    //       targetShapeСoordinates.right < currentShapeСoordinates.right)) &&
-    //   ((targetShapeСoordinates.top > currentShapeСoordinates.top &&
-    //     targetShapeСoordinates.top - 15 < currentShapeСoordinates.bottom) ||
-    //     (targetShapeСoordinates.bottom + 15 > currentShapeСoordinates.top &&
-    //       targetShapeСoordinates.bottom < currentShapeСoordinates.bottom))
-    // ) {
-    //   checkCollisionSide(targetShape, shape);
-    // } else {
-    //   targetShape.style.border = "1px solid white";
-    //   shape.style.border = "1px solid white";
-    // }
     if (isColliding(targetShapeСoordinates, currentShapeСoordinates, 20)) {
       checkCollisionSide(targetShape, shape, 20);
     } else {
@@ -166,7 +151,7 @@ function checkCollisionSide(shape1, shape2, margin) {
     // shape2.style.borderRight = "4px solid yellow";
     // shape2.style.borderBottom = "4px solid green";
 
-    shape1.style.left = shape2.offsetLeft + shape1Сoordinates.width + "px";
+    shape1.style.left = shape2.offsetLeft + shape2Сoordinates.width + "px";
     shape1.style.top = shape2.offsetTop + "px";
     console.log("Угол A");
   }
